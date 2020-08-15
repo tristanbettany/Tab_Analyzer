@@ -1,27 +1,27 @@
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({autoAnalyse: true}, function() {
-        console.log('Auto Analysis set to true');
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.sync.set({autoAnalyse: true}, () => {
+        console.log('Auto Analysis set to true')
     })
-    chrome.storage.sync.set({domains: 'google.com'}, function() {
-        console.log('Domains set to: google.com');
+    chrome.storage.sync.set({domains: 'google.com'}, () => {
+        console.log('Domains set to: google.com')
     })
-});
+})
 
-chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
     if (changeInfo.status == 'complete' && tab.active == true) {
     
-        chrome.storage.sync.get(null, function(data) {
+        chrome.storage.sync.get(null, (data) => {
 
             //Check to run auto analyse code
             if (data.autoAnalyse === true) {
-                var url = tab.url;
+                let url = tab.url
 
                 if (data.domains) {
                     //Split up domains to analyse
-                    var domains = data.domains.split(',');
+                    let domains = data.domains.split(',')
                     
                     //Loop Domains to see if we are on any currently
-                    for (var i = 0; i <= domains.length; i++) { 
+                    for (let i = 0; i <= domains.length; i++) { 
                         
                         if (url.indexOf(domains[i]) != -1) {
                             console.log('Analysing - ' + domains[i]);
@@ -29,14 +29,14 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
                             chrome.tabs.executeScript(
                                 null,
                                 {file: 'scripts/analyse.js'}
-                            );
-                            break;
+                            )
+                            break
                         } else if (url.indexOf(domains[i]) == -1) {
-                            console.log('Nothing To Analyse');
+                            console.log('Nothing To Analyse')
                         }
                     }
                 }
             }
-        });
+        })
     }
-});
+})
