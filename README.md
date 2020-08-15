@@ -8,7 +8,7 @@ This extension aims to analyse the current tab your using and make a selection o
 - Run ```npm install```
 - Run ```npm run build```
 - Enable developer mode in a chromium based browser (Edge or Chrome)
-- Load in the extension as an unpacked extension
+- Load in the extension (contained now in the dist folder) as an unpacked extension
 
 # Usage
 
