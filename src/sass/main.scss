@@ -1,0 +1,31 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body::-webkit-scrollbar {
+    @apply bg-grey-lighter;
+    width: 7px;
+    height: 7px;
+    overflow: visible;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    @apply bg-c-pink;
+}
+
+.aspect-16x9 {
+    padding-bottom: 56.25%; // (9 / 16 = 0.5625)
+}
+
+.embed-responsive {
+    @apply relative;
+    .embed-responsive-item, embed, iframe, object, video {
+        @apply absolute inset-0 w-full h-full;
+    }
+}
