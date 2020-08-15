@@ -2,8 +2,8 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({autoAnalyse: true}, () => {
         console.log('Auto Analysis set to true')
     })
-    chrome.storage.sync.set({domains: 'google.com'}, () => {
-        console.log('Domains set to: google.com')
+    chrome.storage.sync.set({domains: 'test.html'}, () => {
+        console.log('Domains set to: test.html')
     })
 })
 
@@ -15,7 +15,8 @@ chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
             //Check to run auto analyse code
             if (data.autoAnalyse === true) {
                 let url = tab.url
-
+                console.log('Current URL: ' + url)
+                
                 if (data.domains) {
                     //Split up domains to analyse
                     let domains = data.domains.split(',')
