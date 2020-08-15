@@ -4,30 +4,38 @@
         <link rel="stylesheet" type="text/css" href="main.min.css">
     </head>
     <body>
-        <div class="panel-options">
-            <div class="container">
-                <br><br>
-                <img class="logo" src="images/128.png" />
-                <h1 class="title">Tab Analyzer Options</h1>
-                <hr>
-                
-                <h2 class="subtitle">Toggle Automated analysis</h2>
-                <div class="field">
-                    <div class="control">
-                        <label class="radio">
-                            <input type="radio" id="auto-enabled" name="automation"> Enabled
-                        </label>
-                        <label class="radio">
-                            <input type="radio" id="auto-disabled" name="automation"> Disabled
-                        </label>
+        <div class="panel-options container mx-auto mt-50px">
+            <div class="flex flex-row items-center flex-wrap">
+                <img class="logo" src="images/48.png" />
+                <h1 class="text-34px pl-10px">Tab Analyzer Options</h1>
+            </div>
+
+            <hr class="w-full border border-grey-light my-20px">
+
+            <form>
+
+                <div class="flex flex-row items-baseline flex-wrap">
+                    <div class="w-full py-10px">
+                        <h2 class="text-24px mb-5px">Toggle Automated analysis</h2>
+                        <div class="w-full">
+                            <label>
+                                <input type="radio" id="auto-enabled" name="automation"> Enabled
+                            </label>
+                        </div>
+                        <div class="w-full">
+                            <label>
+                                <input type="radio" id="auto-disabled" name="automation"> Disabled
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full py-10px">
+                        <h2 class="text-24px mb-5px">Domains (Comma Seperated)</h2>
+                        <textarea class="appearance-none block w-full h-300px bg-grey-lighter text-grey-darker border border-grey-lighter rounded px-15px py-10px leading-tight focus:outline-none focus:bg-white focus:border-grey" rows="5" cols="100" id="domains"></textarea>
                     </div>
                 </div>
-                
-                <br><br>
 
-                <h2 class="subtitle">Domains (Comma Seperated)</h2>
-                <textarea rows="5" cols="100" id="domains"></textarea>
-            </div>
+            </form>
         </div>
     </body>
 

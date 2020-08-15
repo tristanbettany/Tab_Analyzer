@@ -1,6 +1,6 @@
 {
   "name": "tab-analyzer",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Tab Analyzer",
   "author": "Tristan Bettany (http://www.tristanbettany.com)",
   "license": "MIT",
@@ -24,6 +24,11 @@
   },
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js compile",
+    "build-manifest": "node ./node_modules/gulp/bin/gulp.js compile-manifest",
+    "build-images": "node ./node_modules/gulp/bin/gulp.js compile-images",
+    "build-views": "node ./node_modules/gulp/bin/gulp.js compile-views",
+    "build-sass": "node ./node_modules/gulp/bin/gulp.js compile-sass",
+    "build-js": "node ./node_modules/gulp/bin/gulp.js compile-js",
     "watch": "node ./node_modules/gulp/bin/gulp.js"
   },
   "dependencies": {}

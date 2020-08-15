@@ -95,6 +95,34 @@ gulp.task('compile', (done) => {
     done()
 });
 
+gulp.task('compile-manifest', (done) => {
+    compileManifest()
+    done()
+});
+
+gulp.task('compile-images', (done) => {
+    compileImages()
+    done()
+});
+
+gulp.task('compile-views', (done) => {
+    compileViews()
+    done()
+});
+
+gulp.task('compile-sass', (done) => {
+    compileSass()
+    done()
+});
+
+gulp.task('compile-js', (done) => {
+    compileBackgroundJs()
+    compileOptionsJs()
+    compilePopupJs()
+    compileScriptsJs()
+    done()
+});
+
 gulp.task('default', (done) => {
     gulp.watch('./src/**/*', ['compile']);
     done()
