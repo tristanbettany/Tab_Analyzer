@@ -6,21 +6,18 @@ analyse.onclick = (element) => {
         chrome.tabs.query({currentWindow: true, active: true}, (tab) => {
             let url = tab[0].url
 
-            if (data.domains) {
-                //Split up domains to analyse
-                let domains = data.domains.split(',')
-                
+            if (data.domains) {                
                 //Loop Domains to see if we are on any currently
-                for (let i = 0; i < domains.length; i++) { 
-                    if (url.indexOf(domains[i]) != -1) {
-                        console.log('Analysing - ' + domains[i])
+                for (let i = 0; i < data.domains.length; i++) { 
+                    if (url.indexOf(data.domains[i]) != -1) {
+                        console.log('Analysing - ' + data.domains[i])
                         //Executes the analyse script
                         chrome.tabs.executeScript(
                             null,
                             {file: 'scripts/analyse.js'}
                         )
                         break
-                    } else if (url.indexOf(domains[i]) == -1) {
+                    } else if (url.indexOf(data.domains[i]) == -1) {
                         console.log('Nothing To Analyse')
                         break
                     }

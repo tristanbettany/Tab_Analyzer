@@ -12,32 +12,23 @@
 
             <hr class="w-full border border-grey-light my-20px">
 
-            <form>
-
-                <div class="flex flex-row items-baseline flex-wrap">
-                    <div class="w-full py-10px">
-                        <h2 class="text-24px mb-5px">Toggle Automated analysis</h2>
-                        <div class="w-full">
-                            <label>
-                                <input type="radio" id="auto-enabled" name="automation"> Enabled
-                            </label>
-                        </div>
-                        <div class="w-full">
-                            <label>
-                                <input type="radio" id="auto-disabled" name="automation"> Disabled
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="w-full py-10px">
-                        <h2 class="text-24px mb-5px">Domains (Comma Seperated)</h2>
-                        <textarea class="appearance-none block w-full h-300px bg-grey-lighter text-grey-darker border border-grey-lighter rounded px-15px py-10px leading-tight focus:outline-none focus:bg-white focus:border-grey" rows="5" cols="100" id="domains"></textarea>
-                    </div>
+            <div class="flex flex-row items-baseline flex-wrap">
+                <div class="w-full py-10px">
+                    <h2 class="text-24px mb-5px">Analyzation Config (JSON)</h2>
                 </div>
-
-            </form>
+                <div class="w-full pb-10px">
+                    <div class="w-full h-500px" id="json-editor"></div>
+                </div>
+                <div class="w-full">
+                    <button class="bg-blue py-5px px-10px text-white text-14px text-center tracking-wider w-full rounded" id="save">Save</button>
+                </div>
+            </div>
         </div>
     </body>
 
-    <script src="options.js"></script>
+    <script src="libs/ace.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/theme-github.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/mode-json.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/worker-json.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="options.js" type="text/javascript" charset="utf-8"></script>
 </html>

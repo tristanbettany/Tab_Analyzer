@@ -1,38 +1,24 @@
-//Find Domains Setting Element
-let domains = document.getElementById('domains')
-let autoAnalyseEnableButton = document.getElementById('auto-enabled')
-let autoAnalyseDisableButton = document.getElementById('auto-disabled')
+//Create code editor
+ace.config.set('basePath', '/libs')
+ace.config.setModuleUrl('ace/mode/json_worker', '/libs/worker-json.min.js')
+let editor = ace.edit('json-editor')
+editor.setTheme('ace/theme/github')
+editor.session.setMode('ace/mode/json')
 
 //Get Settings and Re-Populate
 chrome.storage.sync.get(null, (data) => {
-    if (data.domains) {
-        domains.innerHTML = data.domains
-    }
-    
-    if (data.autoAnalyse === true) {
-        autoAnalyseEnableButton.setAttribute('checked', 'checked')
-    } else {
-        autoAnalyseDisableButton.setAttribute('checked', 'checked')
-    }
+    let string = JSON.stringify(data, null, '\t')
+    editor.setValue(string);
+    editor.gotoLine(1);
 })
 
-//Save new Domains Setting On Change
-domains.addEventListener('keyup', () => {
-    chrome.storage.sync.set({domains: domains.value}, () => {
-        console.log('Domains set to: ' + domains.value)
-    })
-})
+let saveButton = document.getElementById('save')
 
-//Enable Auto Analysation
-autoAnalyseEnableButton.addEventListener('click', () => {
-    chrome.storage.sync.set({autoAnalyse: true}, () => {
-        console.log('Auto Analysis set to true')
-    })
-})
+//Save on click of save button
+saveButton.addEventListener('click', () => {
+    let json = editor.getValue()
 
-//Disable Auto Analysation
-autoAnalyseDisableButton.addEventListener('click', () => {
-    chrome.storage.sync.set({autoAnalyse: false}, () => {
-        console.log('Auto Analysis set to false')
+    chrome.storage.sync.set(JSON.parse(json), () => {
+        console.log('Saved data')
     })
 })

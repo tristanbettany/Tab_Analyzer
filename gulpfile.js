@@ -17,7 +17,7 @@ compileBackgroundJs = () => {
             presets: ['@babel/env']
         }))
         .pipe(concat('background.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('./dist'))
 }
 
@@ -27,7 +27,7 @@ compileOptionsJs = () => {
             presets: ['@babel/env']
         }))
         .pipe(concat('options.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('./dist'))
 }
 
@@ -37,7 +37,7 @@ compilePopupJs = () => {
             presets: ['@babel/env']
         }))
         .pipe(concat('popup.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('./dist'))
 }
 
@@ -50,6 +50,13 @@ compileScriptsJs = () => {
         }))
         //.pipe(uglify())
         .pipe(gulp.dest('./dist/scripts'))
+}
+
+compileLibs = () => {
+    exec('MD ./dist/libs')
+
+    return gulp.src('./src/libs/**/*.js')
+        .pipe(gulp.dest('./dist/libs'))
 }
 
 compileSass = () => {
@@ -92,6 +99,7 @@ gulp.task('compile', (done) => {
     compileViews()
     compileImages()
     compileManifest()
+    compileLibs()
     done()
 });
 
@@ -120,6 +128,7 @@ gulp.task('compile-js', (done) => {
     compileOptionsJs()
     compilePopupJs()
     compileScriptsJs()
+    compileLibs()
     done()
 });
 
