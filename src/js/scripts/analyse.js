@@ -8,32 +8,37 @@ chrome.storage.sync.get(null, (data) => {
         document.head.appendChild(style)
     }
 
-    let tags = document.querySelectorAll('body *')
 
-    if (tags) {
-        Array.prototype.forEach.call(tags, (element, i) => {
+    let textNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT)
+    let textNode
 
-            let textNodes = document.createNodeIterator(element, NodeFilter.SHOW_TEXT)
-            let textNode
+    //Loop nodes in document
+    while (textNode = textNodes.nextNode()) {
 
-            while (textNode = textNodes.nextNode()) {
-                
-                if (data.replacements) {
-                    for (let [key, value] of Object.entries(data.replacements)) {
-                        if (data.replacements.hasOwnProperty(key)) {
+        if (data.replacements) {
 
-                            let div = document.createElement('div');
-                            textNode.parentNode.insertBefore(div, textNode);
-                            div.insertAdjacentHTML('afterend', textNode.textContent.replace(new RegExp(key, 'g'), value))
-                            div.remove();
-                            textNode.remove();
+            //Loop items to replace
+            for (let [key, value] of Object.entries(data.replacements)) {
 
-                        }
+                if (data.replacements.hasOwnProperty(key)) {
+                    
+                    let div = document.createElement('div');
+                    let parent = textNode.parentNode
+                    let regex = new RegExp(key, 'g')
+                    let matches = textNode.textContent.match(regex)
+
+                    if (parent && matches) {
+                        parent.insertBefore(div, textNode);
+                        div.insertAdjacentHTML('afterend', textNode.textContent.replace(regex, value))
+                        div.remove();
+                        textNode.remove();
                     }
-                }
 
-            }       
-        })
-    }
+                }
+            }
+        }
+
+    }       
+
 
 })
