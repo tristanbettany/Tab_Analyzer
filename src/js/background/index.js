@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({domains: ['test.html']}, () => {
         console.log('Domains set')
     })
-    chrome.storage.sync.set({replacements: {'TEST': 'REPLACEMENT'}}, () => {
+    chrome.storage.sync.set({replacements: {'TEST': '<span style="color:red;">REPLACEMENT</span>'}}, () => {
         console.log('Replacements set')
     })
 })
