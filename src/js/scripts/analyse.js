@@ -1,6 +1,13 @@
 //Get Settings, they may be needed
 chrome.storage.sync.get(null, (data) => {
 
+    if (data.injectedCSS) {
+        let style = document.createElement('style')
+        style.type = 'text/css';
+        style.appendChild(document.createTextNode(data.injectedCSS));
+        document.head.appendChild(style)
+    }
+
     let tags = document.querySelectorAll('body *')
 
     if (tags) {

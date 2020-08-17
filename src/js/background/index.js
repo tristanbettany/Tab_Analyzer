@@ -8,6 +8,9 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({replacements: {'TEST': '<span style="color:red;">REPLACEMENT</span>'}}, () => {
         console.log('Replacements set')
     })
+    chrome.storage.sync.set({injectedCSS: '* { color: blue; }'}, () => {
+        console.log('CSS Set')
+    })
 })
 
 chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
