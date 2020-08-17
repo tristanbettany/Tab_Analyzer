@@ -3,7 +3,10 @@ chrome.runtime.onInstalled.addListener(() => {
         console.log('Auto Analysis set to true')
     })
     chrome.storage.sync.set({domains: ['test.html']}, () => {
-        console.log('Domains set to: test.html')
+        console.log('Domains set')
+    })
+    chrome.storage.sync.set({replacements: {'TEST': 'REPLACEMENT'}}, () => {
+        console.log('Replacements set')
     })
 })
 
