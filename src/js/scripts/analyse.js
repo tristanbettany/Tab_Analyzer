@@ -10,7 +10,17 @@ chrome.storage.sync.get(null, (data) => {
             let textNode
 
             while (textNode = textNodes.nextNode()) {
-                textNode.textContent = textNode.textContent.replace(/TEST/g, "REPLACED")
+                
+                if (data.replacements) {
+                    for (let [key, value] of Object.entries(data.replacements)) {
+                        if (data.replacements.hasOwnProperty(key)) {
+                            
+                            textNode.textContent = textNode.textContent.replace(new RegExp(key, 'g'), value)
+
+                        }
+                    }
+                }
+
             }       
         })
     }
