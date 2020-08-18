@@ -24,7 +24,16 @@ chrome.storage.sync.get(null, (data) => {
                     
                     let div = document.createElement('div');
                     let parent = textNode.parentNode
-                    let regex = new RegExp(key, 'g')
+                    
+                    let pos = value.indexOf(key)
+                    let regex = null
+                    if (pos !== -1) {
+                        let lookbehind = value.substring(0, pos)
+                        regex = new RegExp('(?<!'+lookbehind+')'+key, 'g')
+                    } else {
+                        regex = new RegExp(key, 'g')
+                    }
+
                     let matches = textNode.textContent.match(regex)
 
                     if (parent && matches) {
