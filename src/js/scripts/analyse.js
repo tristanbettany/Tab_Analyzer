@@ -62,7 +62,6 @@ chrome.storage.sync.get(null, (data) => {
                 let matches = element.innerHTML.match(regex)
 
                 if (matches) {
-                    console.log('match')
                     element.innerHTML = element.innerHTML.replace(regex, data.htmlReplacements[i].replacement)
                 }
             }
