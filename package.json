@@ -29,6 +29,7 @@
     "build-views": "node ./node_modules/gulp/bin/gulp.js compile-views",
     "build-sass": "node ./node_modules/gulp/bin/gulp.js compile-sass",
     "build-js": "node ./node_modules/gulp/bin/gulp.js compile-js",
+    "build-scripts": "node ./node_modules/gulp/bin/gulp.js compile-scripts",
     "watch": "node ./node_modules/gulp/bin/gulp.js"
   },
   "dependencies": {}

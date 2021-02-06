@@ -132,6 +132,11 @@ gulp.task('compile-js', (done) => {
     done()
 });
 
+gulp.task('compile-scripts', (done) => {
+    compileScriptsJs()
+    done()
+});
+
 gulp.task('default', (done) => {
     gulp.watch('./src/**/*', ['compile']);
     done()

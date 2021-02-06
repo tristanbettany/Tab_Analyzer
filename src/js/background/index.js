@@ -2,13 +2,16 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({autoAnalyse: true}, () => {
         console.log('Auto Analysis set to true')
     })
-    chrome.storage.sync.set({domains: ['test.html']}, () => {
+    chrome.storage.sync.set({domains: ['https://gitlab.com/']}, () => {
         console.log('Domains set')
     })
-    chrome.storage.sync.set({replacements: {'TEST': '<span style="color:red;">REPLACEMENT</span>'}}, () => {
+    chrome.storage.sync.set({textReplacements: {'Wiki': '<span class="c-modified">Wiki</span>'}}, () => {
         console.log('Replacements set')
     })
-    chrome.storage.sync.set({injectedCSS: '* { color: blue; }'}, () => {
+    chrome.storage.sync.set({htmlReplacements: {'<div class="sidebar-context-title">\n.+\n</div>': '<span class="c-modified">Project</span>'}}, () => {
+        console.log('Replacements set')
+    })
+    chrome.storage.sync.set({injectedCSS: '.c-modified { color: red; }'}, () => {
         console.log('CSS Set')
     })
 })

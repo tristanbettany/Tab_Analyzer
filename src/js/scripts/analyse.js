@@ -15,12 +15,12 @@ chrome.storage.sync.get(null, (data) => {
     //Loop nodes in document
     while (textNode = textNodes.nextNode()) {
 
-        if (data.replacements) {
+        if (data.textReplacements) {
 
             //Loop items to replace
-            for (let [key, value] of Object.entries(data.replacements)) {
+            for (let [key, value] of Object.entries(data.textReplacements)) {
 
-                if (data.replacements.hasOwnProperty(key)) {
+                if (data.textReplacements.hasOwnProperty(key)) {
                     
                     let div = document.createElement('div');
                     let parent = textNode.parentNode
@@ -39,8 +39,8 @@ chrome.storage.sync.get(null, (data) => {
                     if (parent && matches) {
                         parent.insertBefore(div, textNode);
                         div.insertAdjacentHTML('afterend', textNode.textContent.replace(regex, value))
-                        div.remove();
-                        textNode.remove();
+                        div.remove()
+                        textNode.remove()
                     }
 
                 }
@@ -49,5 +49,41 @@ chrome.storage.sync.get(null, (data) => {
 
     }       
 
+    // ---
+
+    let tags = document.querySelectorAll('body *')
+
+    if (tags) {
+        Array.prototype.forEach.call(tags, (element, i) => {
+
+            if (data.htmlReplacements) {
+
+                //Loop items to replace
+                for (let [key, value] of Object.entries(data.htmlReplacements)) {
+    
+                    if (data.htmlReplacements.hasOwnProperty(key)) {
+
+                        let regex = new RegExp(key, 'g')
+                        let matches = element.innerHTML.match(regex)
+
+                        if (matches) {
+                            let parent = element.parentNode
+                            let div = document.createElement('div')
+                            parent.insertBefore(div, element.textNode)
+                            div.insertAdjacentHTML('afterend', element.innerHTML.replace(regex, value))
+                            div.remove()
+                        }
+
+                    }
+
+                }
+
+            }
+
+        })
+
+    }
+
+    //End
 
 })
