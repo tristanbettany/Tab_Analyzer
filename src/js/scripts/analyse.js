@@ -51,36 +51,23 @@ chrome.storage.sync.get(null, (data) => {
 
     // ---
 
-    let tags = document.querySelectorAll('body *')
+    if (data.htmlReplacements) {
 
-    if (tags) {
-        Array.prototype.forEach.call(tags, (element, i) => {
+        for (let i = 0; i <= data.htmlReplacements.length; i++) { 
 
-            if (data.htmlReplacements) {
+            if (data.htmlReplacements[i]) {
+                let element = document.querySelector(data.htmlReplacements[i].selector);
 
-                //Loop items to replace
-                for (let [key, value] of Object.entries(data.htmlReplacements)) {
-    
-                    if (data.htmlReplacements.hasOwnProperty(key)) {
+                let regex = new RegExp(data.htmlReplacements[i].regex, 'g')
+                let matches = element.innerHTML.match(regex)
 
-                        let regex = new RegExp(key, 'g')
-                        let matches = element.innerHTML.match(regex)
-
-                        if (matches) {
-                            let parent = element.parentNode
-                            let div = document.createElement('div')
-                            parent.insertBefore(div, element.textNode)
-                            div.insertAdjacentHTML('afterend', element.innerHTML.replace(regex, value))
-                            div.remove()
-                        }
-
-                    }
-
+                if (matches) {
+                    console.log('match')
+                    element.innerHTML = element.innerHTML.replace(regex, data.htmlReplacements[i].replacement)
                 }
-
             }
 
-        })
+        }
 
     }
 

@@ -8,7 +8,15 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({textReplacements: {'Wiki': '<span class="c-modified">Wiki</span>'}}, () => {
         console.log('Replacements set')
     })
-    chrome.storage.sync.set({htmlReplacements: {'<div class="sidebar-context-title">\n.+\n</div>': '<span class="c-modified">Project</span>'}}, () => {
+    chrome.storage.sync.set({
+        htmlReplacements: [
+            {
+                selector: '.nav-sidebar-inner-scroll',
+                regex: '<div class="sidebar-context-title">\n.+\n<\/div>',
+                replacement: '<span class="c-modified">Project</span>'
+            },
+        ]
+    }, () => {
         console.log('Replacements set')
     })
     chrome.storage.sync.set({injectedCSS: '.c-modified { color: red; }'}, () => {
