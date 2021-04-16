@@ -23,6 +23,10 @@ EXIT /B
     docker run -it --rm -v %cd%:/app -w /app/config_gen tristanbettany:confgen bash
     GOTO END_CASE
 
+:CASE_cg
+    docker run -it --rm -v %cd%:/app -w /app/config_gen tristanbettany:confgen ./cli config:gen
+    GOTO END_CASE
+
 :DEFAULT_CASE
     ECHO Unknown function "%1"
     GOTO END_CASE
