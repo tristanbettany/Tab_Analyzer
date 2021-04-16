@@ -15,6 +15,11 @@ EXIT /B
     docker run -it --rm -v %cd%:/app -w /app/config_gen tristanbettany:confgen composer install
     GOTO END_CASE
 
+:CASE_update
+    ECHO Updating dependancies...
+    docker run -it --rm -v %cd%:/app -w /app/config_gen tristanbettany:confgen composer update
+    GOTO END_CASE
+
 :CASE_phpshell
     docker run -it --rm -v %cd%:/app -w /app/config_gen tristanbettany:confgen php -a
     GOTO END_CASE
