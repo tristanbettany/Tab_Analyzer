@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({configUrl: 'http://cg.dev.test?format=js'}, () => {
+    chrome.storage.sync.set({configUrl: 'http://cg.dev.test?format=js&type=gitlab'}, () => {
         console.log('Default Config Url Set')
     })
 })

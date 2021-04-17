@@ -64,10 +64,6 @@ EXIT /B
     docker container exec -it -w /app cgnode bash
     GOTO END_CASE
 
-:CASE_cg
-    docker container exec -it -w /www cgphp80 ./cli config:gen
-    GOTO END_CASE
-
 :DEFAULT_CASE
     ECHO Unknown function "%1"
     GOTO END_CASE
