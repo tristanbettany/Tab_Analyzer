@@ -1,0 +1,49 @@
+.sidebar-top-level-items{
+    margin-top:100px;
+}
+
+.context-header > a:hover {
+    background-color:rgba(0,0,0,0) !important;
+    text-decoration: underline;
+}
+
+.c-project-info {
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    padding-bottom:10px;
+    border-right: 1px solid #DBDBDB;
+    padding-right:10px;
+    padding-left:10px;
+    display:block;
+}
+
+.c-label {
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    display: block;
+    font-size:12px;
+    width:100%;
+    text-align:right;
+    border-radius:5px;
+    margin-bottom:10px;
+    z-index:9999;
+}
+
+.pid{
+    color: black;
+    background-color: #E6E6E6;
+}
+
+.v-primary {
+    color: #525252;
+    background-color: #FBE9E7;
+}
+
+.v-secondary {
+    color: #666;
+    background-color: #E6E6E6;
+}
