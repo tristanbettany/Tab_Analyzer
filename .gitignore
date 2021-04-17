@@ -4,3 +4,4 @@ vendor
 config_gen/vendor
 .idea
 .env
+config_gen/output
