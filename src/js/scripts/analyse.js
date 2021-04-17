@@ -1,5 +1,6 @@
-//Get Settings, they may be needed
-chrome.storage.sync.get(null, (data) => {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+
+    let data = message
 
     if (data.injectedCSS) {
         let style = document.createElement('style')
@@ -72,4 +73,4 @@ chrome.storage.sync.get(null, (data) => {
 
     //End
 
-})
+});

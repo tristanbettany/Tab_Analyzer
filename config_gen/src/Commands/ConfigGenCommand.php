@@ -95,6 +95,8 @@ final class ConfigGenCommand extends Command
             ];
         }
 
+        $jsonArray['injectedCSS'] = file_get_contents(__DIR__ . '/../CSS/gitlab.css');
+
         file_put_contents(__DIR__ . '/../../output/config.json', json_encode($jsonArray));
 
         return 0;
