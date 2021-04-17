@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  cgnginx:
+    container_name: cgnginx
+    build:
+      context: ./containers/nginx
+    restart: 'always'
+    ports:
+      - 80:80
+    volumes:
+      - ./config_gen:/www
+      - ./containers/nginx/vhosts:/etc/nginx/conf.d
+    links:
+      - cgphp80
+
+  cgphp80:
+    container_name: cgphp80
+    build:
+      context: ./containers/php80
+    restart: 'always'
+    volumes:
+      - ./config_gen:/www
+      - ./containers/php80/php.ini:/usr/local/etc/php/conf.d/php.ini
+
+  cgnode:
+    container_name: cgnode
+    build:
+      context: ./containers/node
+    restart: 'always'
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
